@@ -1,0 +1,9 @@
+﻿<Application x:Class="DefaultWPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:DefaultWPF"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <FontFamily x:Key="Clear Sans">pack://application:,,,/Resources/Fonts/#Clear Sans</FontFamily>
+    </Application.Resources>
+</Application>

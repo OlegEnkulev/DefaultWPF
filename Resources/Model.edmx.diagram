@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0bf6e727533649b0b3da70f0cb0d19c3" Name="Diagram1">
+        <EntityTypeShape EntityType="DefaultDBModel.EducationalOrganizations" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DefaultDBModel.Employers" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DefaultDBModel.Internships" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DefaultDBModel.NecessarySkills" Width="1.5" PointX="7.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DefaultDBModel.Reviews" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="DefaultDBModel.Skills" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DefaultDBModel.Specializations" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DefaultDBModel.Student_Skills" Width="1.5" PointX="6" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DefaultDBModel.Students" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DefaultDBModel.Users" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="DefaultDBModel.FK_EducationalOrganizations_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DefaultDBModel.FK_Specializations_EducationalOrganizations" ManuallyRouted="false" />
+        <AssociationConnector Association="DefaultDBModel.FK_Students_EducationalOrganizations" ManuallyRouted="false" />
+        <AssociationConnector Association="DefaultDBModel.FK_Employers_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DefaultDBModel.FK_Internships_Employers" ManuallyRouted="false" />
+        <AssociationConnector Association="DefaultDBModel.FK_NecessarySkills_Internships" ManuallyRouted="false" />
+        <AssociationConnector Association="DefaultDBModel.FK_NecessarySkills_Skills" ManuallyRouted="false" />
+        <AssociationConnector Association="DefaultDBModel.FK_Reviews_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DefaultDBModel.FK_Reviews_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="DefaultDBModel.FK_Student_Skills_Skills" ManuallyRouted="false" />
+        <AssociationConnector Association="DefaultDBModel.FK_Students_Specializations" ManuallyRouted="false" />
+        <AssociationConnector Association="DefaultDBModel.FK_Student_Skills_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="DefaultDBModel.FK_Students_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DefaultDBModel.Roles" Width="1.5" PointX="0.75" PointY="2.5" />
+        <AssociationConnector Association="DefaultDBModel.FK_Users_Roles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
