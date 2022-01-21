@@ -9,22 +9,24 @@
       Title="ControlUsersPage" FontFamily="{StaticResource Clear Sans}" FontSize="18">
 
     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" >
-        <DataGrid Height="350" Margin="5" BorderBrush="#3759ff" BorderThickness="2">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Имя" Width="*"/>
-                <DataGridTextColumn Header="Фамилия" Width="*"/>
-                <DataGridTextColumn Header="Роль" Width="*"/>
-                <DataGridTextColumn Header="Логин" Width="*"/>
-                <DataGridTextColumn Header="Пароль" Width="*"/>
-                <DataGridTextColumn Header="Подтверждено" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <ScrollViewer Height="300" Margin="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <DataGrid BorderBrush="#3759ff" BorderThickness="2" x:Name="DG" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Имя" Width="150" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Фамилия" Width="150" Binding="{Binding Surname}"/>
+                    <DataGridTextColumn Header="Роль" Width="150" Binding="{Binding Roles.RoleName}"/>
+                    <DataGridTextColumn Header="Логин" Width="150" Binding="{Binding Login}"/>
+                    <DataGridTextColumn Header="Пароль" Width="150" Binding="{Binding Password}"/>
+                    <DataGridTextColumn Header="Подтверждено" Width="150" Binding="{Binding Verified}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Создать пользователя" x:Name="CreateBTN" Margin="5" Width="310" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="CreateBTN_Click"/>
             <Button Content="Редактировать пользователя" x:Name="ChangeBTN" Margin="5" Width="310" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="ChangeBTN_Click"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Обновить" x:Name="UpdateBTN" Margin="5" Width="310" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="UpdateBTN_Click"/>
+            <Button Content="Удалить" x:Name="DeleteBTN" Margin="5" Width="310" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="DeleteBTN_Click"/>
             <Button Content="Назад" x:Name="BackBTN" Margin="5" Width="310" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="BackBTN_Click"/>
         </StackPanel>
     </StackPanel>
