@@ -17,16 +17,13 @@ namespace DefaultWPF.Resources
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Skills()
         {
-            this.NecessarySkills = new HashSet<NecessarySkills>();
-            this.Student_Skills = new HashSet<Student_Skills>();
+            this.StudentSkills = new HashSet<StudentSkills>();
         }
     
         public int Id { get; set; }
         public string Skill { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NecessarySkills> NecessarySkills { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Student_Skills> Student_Skills { get; set; }
+        public virtual ICollection<StudentSkills> StudentSkills { get; set; }
     }
 }

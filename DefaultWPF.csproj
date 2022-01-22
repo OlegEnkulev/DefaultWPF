@@ -64,19 +64,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Pages\ActionWithUserPage.xaml.cs">
+    <Compile Include="Pages\AdminActions\ActionWithSkillPage.xaml.cs">
+      <DependentUpon>ActionWithSkillPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminActions\ActionWithInternshipPage.xaml.cs">
+      <DependentUpon>ActionWithInternshipPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminActions\ActionWithUserPage.xaml.cs">
       <DependentUpon>ActionWithUserPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ControlInternshipsPage.xaml.cs">
+    <Compile Include="Pages\AdminActions\ControlInternshipsPage.xaml.cs">
       <DependentUpon>ControlInternshipsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ControlSkillsPage.xaml.cs">
+    <Compile Include="Pages\AdminActions\ControlSkillsPage.xaml.cs">
       <DependentUpon>ControlSkillsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ControlUsersPage.xaml.cs">
+    <Compile Include="Pages\AdminActions\ControlUsersPage.xaml.cs">
       <DependentUpon>ControlUsersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\EdOrgPage.xaml.cs">
@@ -92,12 +98,6 @@
       <DependentUpon>StudentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Resources\Core.cs" />
-    <Compile Include="Resources\EducationalOrganizations.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Employers.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Resources\Internships.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -116,25 +116,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\NecessarySkills.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Reviews.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Resources\Roles.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Resources\Skills.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Specializations.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Students.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Student_Skills.cs">
+    <Compile Include="Resources\StudentSkills.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Resources\Users.cs">
@@ -152,7 +140,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\ActionWithUserPage.xaml">
+    <Page Include="Pages\AdminActions\ActionWithSkillPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AdminActions\ActionWithInternshipPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\AdminActions\ActionWithUserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,15 +156,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ControlInternshipsPage.xaml">
+    <Page Include="Pages\AdminActions\ControlInternshipsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ControlSkillsPage.xaml">
+    <Page Include="Pages\AdminActions\ControlSkillsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ControlUsersPage.xaml">
+    <Page Include="Pages\AdminActions\ControlUsersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -232,6 +228,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\EdOrg.png" />
+    <Resource Include="Resources\Images\Employer.png" />
+    <Resource Include="Resources\Images\Student.png" />
     <Content Include="Resources\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model.Context.cs</LastGenOutput>
@@ -246,5 +245,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

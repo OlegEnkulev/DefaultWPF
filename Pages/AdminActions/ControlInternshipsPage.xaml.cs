@@ -16,23 +16,17 @@ using DefaultWPF.Resources;
 
 namespace DefaultWPF.Pages
 {
-    public partial class EdOrgPage : Page
+    public partial class ControlInternshipsPage : Page
     {
-        public EdOrgPage()
+        public ControlInternshipsPage()
         {
             InitializeComponent();
-
-            DG.ItemsSource = Core.DB.Skills.ToList();
-        }
-
-        private void DeleteProfileBTN_Click(object sender, RoutedEventArgs e)
-        {
-
+            DG.ItemsSource = Core.DB.Internships.ToList();
         }
 
         private void CreateBTN_Click(object sender, RoutedEventArgs e)
         {
-            Core.mainWindow.MainFrame.Navigate(new ActionWithSkillPage(-1));
+            Core.mainWindow.MainFrame.Navigate(new ActionWithInternshipPage(-1));
         }
 
         private void ChangeBTN_Click(object sender, RoutedEventArgs e)
@@ -46,20 +40,19 @@ namespace DefaultWPF.Pages
 
             while (true)
             {
-                if (DG.SelectedItem == Core.DB.Skills.Where(s => s.Id == id).FirstOrDefault())
+                if (DG.SelectedItem == Core.DB.Internships.Where(s => s.Id == id).FirstOrDefault())
                 {
                     break;
                 }
                 id++;
             }
 
-            Core.mainWindow.MainFrame.Navigate(new ActionWithSkillPage(id));
+            Core.mainWindow.MainFrame.Navigate(new ActionWithInternshipPage(id));
         }
 
         private void BackBTN_Click(object sender, RoutedEventArgs e)
         {
-            Core.currentUser = null;
-            Core.mainWindow.MainFrame.Navigate(new MainPage());
+            Core.mainWindow.MainFrame.Navigate(new AdminPage());
         }
 
         private void DeleteBTN_Click(object sender, RoutedEventArgs e)
@@ -73,17 +66,17 @@ namespace DefaultWPF.Pages
 
             while (true)
             {
-                if (DG.SelectedItem == Core.DB.Skills.Where(s => s.Id == id).FirstOrDefault())
+                if (DG.SelectedItem == Core.DB.Internships.Where(s => s.Id == id).FirstOrDefault())
                 {
                     break;
                 }
                 id++;
             }
 
-            Skills deleteSkill = Core.DB.Skills.Where(s => s.Id == id).FirstOrDefault();
-            Core.DB.Skills.Remove(deleteSkill);
+            Internships deleteInternship = Core.DB.Internships.Where(s => s.Id == id).FirstOrDefault();
+            Core.DB.Internships.Remove(deleteInternship);
             Core.DB.SaveChanges();
-            DG.ItemsSource = Core.DB.Skills.ToList();
+            DG.ItemsSource = Core.DB.Internships.ToList();
         }
     }
 }

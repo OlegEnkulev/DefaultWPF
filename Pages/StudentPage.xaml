@@ -9,6 +9,32 @@
       Title="StudentPage" FontFamily="{StaticResource Clear Sans}" FontSize="18">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="30*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="/Resources/Images/Student.png" Width="100" HorizontalAlignment="Center"/>
+            <Label x:Name="NameLabel" Content="Unnamed" HorizontalAlignment="Center"/>
+            <Label x:Name="GradeLabel" Content="Ваша оценка: 0" HorizontalAlignment="Center"/>
+            <Button Content="Удалить профиль" x:Name="DeleteProfileBTN" Margin="5" Width="180" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="DeleteProfileBTN_Click"/>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" >
+            <ScrollViewer Height="300" Margin="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <DataGrid BorderBrush="#3759ff" BorderThickness="2" x:Name="DG" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID работодателя" Width="160" Binding="{Binding EmployerId}"/>
+                        <DataGridTextColumn Header="Дата начала стажировки" Width="230" Binding="{Binding DateStart}"/>
+                        <DataGridTextColumn Header="Дата окончания стажировки" Width="270" Binding="{Binding DateStop}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Откликнуться" x:Name="OtklickBTN" Margin="5" Width="210" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="OtklickBTN_Click"/>
+                <Button Content="Назад" x:Name="BackBTN" Margin="5" Width="210" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="BackBTN_Click"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

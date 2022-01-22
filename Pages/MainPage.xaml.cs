@@ -37,14 +37,13 @@ namespace DefaultWPF.Pages
         {
             if (LoginBox.Text.Length < 4 || PasswordBox.Password.Length < 4) 
             {
-
+                MessageBox.Show("Invalid data!");
                 return;
             }
 
             if(Core.DB.Users.Where(u => u.Login == LoginBox.Text).FirstOrDefault() == null)
             {
-
-
+                MessageBox.Show("Invalid data!");
                 return;
             }
 
@@ -52,14 +51,13 @@ namespace DefaultWPF.Pages
 
             if(user.Password != PasswordBox.Password)
             {
-
-
+                MessageBox.Show("Invalid data!");
                 return;
             }
 
             if (user.Verified == false)
             {
-                MessageBox.Show("ТЫ ДАЖЕ НЕ ГРАЖДАНИН!");
+                MessageBox.Show("Invalid data!");
                 return;
             }
 

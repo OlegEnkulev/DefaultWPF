@@ -17,12 +17,9 @@ namespace DefaultWPF.Resources
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Users()
         {
-            this.EducationalOrganizations = new HashSet<EducationalOrganizations>();
-            this.Employers = new HashSet<Employers>();
-            this.Reviews = new HashSet<Reviews>();
-            this.Reviews1 = new HashSet<Reviews>();
-            this.Student_Skills = new HashSet<Student_Skills>();
-            this.Students = new HashSet<Students>();
+            this.Internships = new HashSet<Internships>();
+            this.Internships1 = new HashSet<Internships>();
+            this.StudentSkills = new HashSet<StudentSkills>();
         }
     
         public int Id { get; set; }
@@ -30,22 +27,16 @@ namespace DefaultWPF.Resources
         public string Password { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public bool Verified { get; set; }
-        public Nullable<int> Grade { get; set; }
         public int RoleId { get; set; }
+        public bool Verified { get; set; }
+        public int Grade { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EducationalOrganizations> EducationalOrganizations { get; set; }
+        public virtual ICollection<Internships> Internships { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Employers> Employers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reviews> Reviews { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Reviews> Reviews1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Student_Skills> Student_Skills { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Students> Students { get; set; }
+        public virtual ICollection<Internships> Internships1 { get; set; }
         public virtual Roles Roles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StudentSkills> StudentSkills { get; set; }
     }
 }

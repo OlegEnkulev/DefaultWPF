@@ -16,18 +16,12 @@ using DefaultWPF.Resources;
 
 namespace DefaultWPF.Pages
 {
-    public partial class EdOrgPage : Page
+    public partial class ControlSkillsPage : Page
     {
-        public EdOrgPage()
+        public ControlSkillsPage()
         {
             InitializeComponent();
-
             DG.ItemsSource = Core.DB.Skills.ToList();
-        }
-
-        private void DeleteProfileBTN_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void CreateBTN_Click(object sender, RoutedEventArgs e)
@@ -58,8 +52,7 @@ namespace DefaultWPF.Pages
 
         private void BackBTN_Click(object sender, RoutedEventArgs e)
         {
-            Core.currentUser = null;
-            Core.mainWindow.MainFrame.Navigate(new MainPage());
+            Core.mainWindow.MainFrame.Navigate(new AdminPage());
         }
 
         private void DeleteBTN_Click(object sender, RoutedEventArgs e)

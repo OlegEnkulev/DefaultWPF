@@ -14,20 +14,13 @@ namespace DefaultWPF.Resources
     
     public partial class Internships
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Internships()
-        {
-            this.NecessarySkills = new HashSet<NecessarySkills>();
-        }
-    
         public int Id { get; set; }
         public int EmployerId { get; set; }
-        public System.DateTime DateStart { get; set; }
+        public Nullable<int> StudentId { get; set; }
+        public Nullable<System.DateTime> DateStart { get; set; }
         public Nullable<System.DateTime> DateStop { get; set; }
-        public bool Ckosed { get; set; }
     
-        public virtual Employers Employers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NecessarySkills> NecessarySkills { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual Users Users1 { get; set; }
     }
 }

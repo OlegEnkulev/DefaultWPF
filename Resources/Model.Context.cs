@@ -25,16 +25,10 @@ namespace DefaultWPF.Resources
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<EducationalOrganizations> EducationalOrganizations { get; set; }
-        public virtual DbSet<Employers> Employers { get; set; }
+        public virtual DbSet<StudentSkills> StudentSkills { get; set; }
         public virtual DbSet<Internships> Internships { get; set; }
-        public virtual DbSet<NecessarySkills> NecessarySkills { get; set; }
-        public virtual DbSet<Reviews> Reviews { get; set; }
-        public virtual DbSet<Skills> Skills { get; set; }
-        public virtual DbSet<Specializations> Specializations { get; set; }
-        public virtual DbSet<Student_Skills> Student_Skills { get; set; }
-        public virtual DbSet<Students> Students { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<Skills> Skills { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

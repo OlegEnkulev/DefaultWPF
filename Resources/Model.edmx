@@ -5,55 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище DefaultDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="EducationalOrganizations">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="OrganizationName" Type="nchar" MaxLength="10" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Employers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="OrganizationName" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="Internships">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployerId" Type="int" Nullable="false" />
-          <Property Name="DateStart" Type="datetime" Nullable="false" />
+          <Property Name="StudentId" Type="int" />
+          <Property Name="DateStart" Type="datetime" />
           <Property Name="DateStop" Type="datetime" />
-          <Property Name="Ckosed" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="NecessarySkills">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SkillId" Type="int" Nullable="false" />
-          <Property Name="InternshirId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Reviews">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserToId" Type="int" Nullable="false" />
-          <Property Name="UserFromId" Type="int" Nullable="false" />
-          <Property Name="Review" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Grade" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Skills">
@@ -63,31 +29,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Skill" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="Specializations">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Specialization" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EOID" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Student Skills">
+        <EntityType Name="StudentSkills">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StudentId" Type="int" Nullable="false" />
           <Property Name="SkillId" Type="int" Nullable="false" />
-          <Property Name="Verified" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Students">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="SpecializationId" Type="int" Nullable="false" />
-          <Property Name="EOID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -100,37 +48,13 @@
           <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="Verified" Type="bit" Nullable="false" />
-          <Property Name="Grade" Type="int" />
+          <Property Name="Grade" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_EducationalOrganizations_Users">
+        <Association Name="FK_Internships_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="EducationalOrganizations" Type="Self.EducationalOrganizations" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="EducationalOrganizations">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employers_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Employers">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Internships_Employers">
-          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
           <End Role="Internships" Type="Self.Internships" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Employers">
+            <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Internships">
@@ -138,123 +62,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_NecessarySkills_Internships">
-          <End Role="Internships" Type="Self.Internships" Multiplicity="1" />
-          <End Role="NecessarySkills" Type="Self.NecessarySkills" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Internships">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="NecessarySkills">
-              <PropertyRef Name="InternshirId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NecessarySkills_Skills">
-          <End Role="Skills" Type="Self.Skills" Multiplicity="1" />
-          <End Role="NecessarySkills" Type="Self.NecessarySkills" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Skills">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="NecessarySkills">
-              <PropertyRef Name="SkillId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reviews_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+        <Association Name="FK_Internships_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Internships" Type="Self.Internships" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Reviews">
-              <PropertyRef Name="UserToId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reviews_Users1">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Reviews">
-              <PropertyRef Name="UserFromId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Specializations_EducationalOrganizations">
-          <End Role="EducationalOrganizations" Type="Self.EducationalOrganizations" Multiplicity="1" />
-          <End Role="Specializations" Type="Self.Specializations" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EducationalOrganizations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Specializations">
-              <PropertyRef Name="EOID" />
+            <Dependent Role="Internships">
+              <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Student Skills_Skills">
           <End Role="Skills" Type="Self.Skills" Multiplicity="1" />
-          <End Role="Student Skills" Type="Self.Student Skills" Multiplicity="*" />
+          <End Role="StudentSkills" Type="Self.StudentSkills" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Skills">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Student Skills">
+            <Dependent Role="StudentSkills">
               <PropertyRef Name="SkillId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Student Skills_Users">
+        <Association Name="FK_StudentSkills_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Student Skills" Type="Self.Student Skills" Multiplicity="*" />
+          <End Role="StudentSkills" Type="Self.StudentSkills" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Student Skills">
+            <Dependent Role="StudentSkills">
               <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Students_EducationalOrganizations">
-          <End Role="EducationalOrganizations" Type="Self.EducationalOrganizations" Multiplicity="1" />
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EducationalOrganizations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Students">
-              <PropertyRef Name="EOID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Students_Specializations">
-          <End Role="Specializations" Type="Self.Specializations" Multiplicity="1" />
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Specializations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Students">
-              <PropertyRef Name="SpecializationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Students_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Students">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -271,68 +111,26 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище DefaultDBModelContainer">
-          <EntitySet Name="EducationalOrganizations" EntityType="Self.EducationalOrganizations" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Employers" EntityType="Self.Employers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Internships" EntityType="Self.Internships" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="NecessarySkills" EntityType="Self.NecessarySkills" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Skills" EntityType="Self.Skills" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Specializations" EntityType="Self.Specializations" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Student Skills" EntityType="Self.Student Skills" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentSkills" EntityType="Self.StudentSkills" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_EducationalOrganizations_Users" Association="Self.FK_EducationalOrganizations_Users">
+          <AssociationSet Name="FK_Internships_Users" Association="Self.FK_Internships_Users">
             <End Role="Users" EntitySet="Users" />
-            <End Role="EducationalOrganizations" EntitySet="EducationalOrganizations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employers_Users" Association="Self.FK_Employers_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Employers" EntitySet="Employers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Internships_Employers" Association="Self.FK_Internships_Employers">
-            <End Role="Employers" EntitySet="Employers" />
             <End Role="Internships" EntitySet="Internships" />
           </AssociationSet>
-          <AssociationSet Name="FK_NecessarySkills_Internships" Association="Self.FK_NecessarySkills_Internships">
+          <AssociationSet Name="FK_Internships_Users1" Association="Self.FK_Internships_Users1">
+            <End Role="Users" EntitySet="Users" />
             <End Role="Internships" EntitySet="Internships" />
-            <End Role="NecessarySkills" EntitySet="NecessarySkills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NecessarySkills_Skills" Association="Self.FK_NecessarySkills_Skills">
-            <End Role="Skills" EntitySet="Skills" />
-            <End Role="NecessarySkills" EntitySet="NecessarySkills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reviews_Users" Association="Self.FK_Reviews_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Reviews" EntitySet="Reviews" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reviews_Users1" Association="Self.FK_Reviews_Users1">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Reviews" EntitySet="Reviews" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Specializations_EducationalOrganizations" Association="Self.FK_Specializations_EducationalOrganizations">
-            <End Role="EducationalOrganizations" EntitySet="EducationalOrganizations" />
-            <End Role="Specializations" EntitySet="Specializations" />
           </AssociationSet>
           <AssociationSet Name="FK_Student Skills_Skills" Association="Self.FK_Student Skills_Skills">
             <End Role="Skills" EntitySet="Skills" />
-            <End Role="Student Skills" EntitySet="Student Skills" />
+            <End Role="StudentSkills" EntitySet="StudentSkills" />
           </AssociationSet>
-          <AssociationSet Name="FK_Student Skills_Users" Association="Self.FK_Student Skills_Users">
+          <AssociationSet Name="FK_StudentSkills_Users" Association="Self.FK_StudentSkills_Users">
             <End Role="Users" EntitySet="Users" />
-            <End Role="Student Skills" EntitySet="Student Skills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Students_EducationalOrganizations" Association="Self.FK_Students_EducationalOrganizations">
-            <End Role="EducationalOrganizations" EntitySet="EducationalOrganizations" />
-            <End Role="Students" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Students_Specializations" Association="Self.FK_Students_Specializations">
-            <End Role="Specializations" EntitySet="Specializations" />
-            <End Role="Students" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Students_Users" Association="Self.FK_Students_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Students" EntitySet="Students" />
+            <End Role="StudentSkills" EntitySet="StudentSkills" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
             <End Role="Roles" EntitySet="Roles" />
@@ -343,176 +141,93 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DefaultDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="EducationalOrganizations">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="OrganizationName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_EducationalOrganizations_Users" FromRole="EducationalOrganizations" ToRole="Users" />
-          <NavigationProperty Name="Specializations" Relationship="Self.FK_Specializations_EducationalOrganizations" FromRole="EducationalOrganizations" ToRole="Specializations" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_Students_EducationalOrganizations" FromRole="EducationalOrganizations" ToRole="Students" />
-        </EntityType>
-        <EntityType Name="Employers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="OrganizationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Employers_Users" FromRole="Employers" ToRole="Users" />
-          <NavigationProperty Name="Internships" Relationship="Self.FK_Internships_Employers" FromRole="Employers" ToRole="Internships" />
-        </EntityType>
-        <EntityType Name="Internships">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployerId" Type="Int32" Nullable="false" />
-          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DateStop" Type="DateTime" Precision="3" />
-          <Property Name="Ckosed" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Employers" Relationship="Self.FK_Internships_Employers" FromRole="Internships" ToRole="Employers" />
-          <NavigationProperty Name="NecessarySkills" Relationship="Self.FK_NecessarySkills_Internships" FromRole="Internships" ToRole="NecessarySkills" />
-        </EntityType>
-        <EntityType Name="NecessarySkills">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SkillId" Type="Int32" Nullable="false" />
-          <Property Name="InternshirId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Internships" Relationship="Self.FK_NecessarySkills_Internships" FromRole="NecessarySkills" ToRole="Internships" />
-          <NavigationProperty Name="Skills" Relationship="Self.FK_NecessarySkills_Skills" FromRole="NecessarySkills" ToRole="Skills" />
-        </EntityType>
-        <EntityType Name="Reviews">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserToId" Type="Int32" Nullable="false" />
-          <Property Name="UserFromId" Type="Int32" Nullable="false" />
-          <Property Name="Review" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Grade" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Reviews_Users" FromRole="Reviews" ToRole="Users" />
-          <NavigationProperty Name="Users1" Relationship="Self.FK_Reviews_Users1" FromRole="Reviews" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Skills">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Skill" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="NecessarySkills" Relationship="Self.FK_NecessarySkills_Skills" FromRole="Skills" ToRole="NecessarySkills" />
-          <NavigationProperty Name="Student_Skills" Relationship="Self.FK_Student_Skills_Skills" FromRole="Skills" ToRole="Student_Skills" />
-        </EntityType>
-        <EntityType Name="Specializations">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Specialization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EOID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="EducationalOrganizations" Relationship="Self.FK_Specializations_EducationalOrganizations" FromRole="Specializations" ToRole="EducationalOrganizations" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_Students_Specializations" FromRole="Specializations" ToRole="Students" />
-        </EntityType>
-        <EntityType Name="Student_Skills">
+        <EntityContainer Name="DefaultDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="StudentSkills" EntityType="DefaultDBModel.StudentSkills" />
+          <EntitySet Name="Internships" EntityType="DefaultDBModel.Internships" />
+          <EntitySet Name="Roles" EntityType="DefaultDBModel.Roles" />
+          <EntitySet Name="Skills" EntityType="DefaultDBModel.Skills" />
+          <EntitySet Name="Users" EntityType="DefaultDBModel.Users" />
+          <AssociationSet Name="FK_Internships_Users" Association="DefaultDBModel.FK_Internships_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Internships" EntitySet="Internships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Internships_Users1" Association="DefaultDBModel.FK_Internships_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Internships" EntitySet="Internships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Roles" Association="DefaultDBModel.FK_Users_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Skills_Skills" Association="DefaultDBModel.FK_Student_Skills_Skills">
+            <End Role="Skills" EntitySet="Skills" />
+            <End Role="StudentSkills" EntitySet="StudentSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StudentSkills_Users" Association="DefaultDBModel.FK_StudentSkills_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="StudentSkills" EntitySet="StudentSkills" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="StudentSkills">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StudentId" Type="Int32" Nullable="false" />
           <Property Name="SkillId" Type="Int32" Nullable="false" />
-          <Property Name="Verified" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Skills" Relationship="Self.FK_Student_Skills_Skills" FromRole="Student_Skills" ToRole="Skills" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Student_Skills_Users" FromRole="Student_Skills" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Students">
+          <NavigationProperty Name="Skills" Relationship="DefaultDBModel.FK_Student_Skills_Skills" FromRole="StudentSkills" ToRole="Skills" />
+          <NavigationProperty Name="Users" Relationship="DefaultDBModel.FK_StudentSkills_Users" FromRole="StudentSkills" ToRole="Users" />
+          </EntityType>
+        <EntityType Name="Internships">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="SpecializationId" Type="Int32" Nullable="false" />
-          <Property Name="EOID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="EducationalOrganizations" Relationship="Self.FK_Students_EducationalOrganizations" FromRole="Students" ToRole="EducationalOrganizations" />
-          <NavigationProperty Name="Specializations" Relationship="Self.FK_Students_Specializations" FromRole="Students" ToRole="Specializations" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Students_Users" FromRole="Students" ToRole="Users" />
+          <Property Name="EmployerId" Type="Int32" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" />
+          <Property Name="DateStart" Type="DateTime" Precision="3" />
+          <Property Name="DateStop" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="DefaultDBModel.FK_Internships_Users" FromRole="Internships" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="DefaultDBModel.FK_Internships_Users1" FromRole="Internships" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="DefaultDBModel.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Skills">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Skill" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StudentSkills" Relationship="DefaultDBModel.FK_Student_Skills_Skills" FromRole="Skills" ToRole="StudentSkills" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Verified" Type="Boolean" Nullable="false" />
-          <Property Name="Grade" Type="Int32" />
-          <NavigationProperty Name="EducationalOrganizations" Relationship="Self.FK_EducationalOrganizations_Users" FromRole="Users" ToRole="EducationalOrganizations" />
-          <NavigationProperty Name="Employers" Relationship="Self.FK_Employers_Users" FromRole="Users" ToRole="Employers" />
-          <NavigationProperty Name="Reviews" Relationship="Self.FK_Reviews_Users" FromRole="Users" ToRole="Reviews" />
-          <NavigationProperty Name="Reviews1" Relationship="Self.FK_Reviews_Users1" FromRole="Users" ToRole="Reviews" />
-          <NavigationProperty Name="Student_Skills" Relationship="Self.FK_Student_Skills_Users" FromRole="Users" ToRole="Student_Skills" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_Students_Users" FromRole="Users" ToRole="Students" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="Verified" Type="Boolean" Nullable="false" />
+          <Property Name="Grade" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Internships" Relationship="DefaultDBModel.FK_Internships_Users" FromRole="Users" ToRole="Internships" />
+          <NavigationProperty Name="Internships1" Relationship="DefaultDBModel.FK_Internships_Users1" FromRole="Users" ToRole="Internships" />
           <NavigationProperty Name="Roles" Relationship="DefaultDBModel.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+          <NavigationProperty Name="StudentSkills" Relationship="DefaultDBModel.FK_StudentSkills_Users" FromRole="Users" ToRole="StudentSkills" />
         </EntityType>
-        <Association Name="FK_EducationalOrganizations_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="EducationalOrganizations" Type="Self.EducationalOrganizations" Multiplicity="*" />
+        <Association Name="FK_Internships_Users">
+          <End Type="DefaultDBModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="DefaultDBModel.Internships" Role="Internships" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="EducationalOrganizations">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Specializations_EducationalOrganizations">
-          <End Role="EducationalOrganizations" Type="Self.EducationalOrganizations" Multiplicity="1" />
-          <End Role="Specializations" Type="Self.Specializations" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EducationalOrganizations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Specializations">
-              <PropertyRef Name="EOID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Students_EducationalOrganizations">
-          <End Role="EducationalOrganizations" Type="Self.EducationalOrganizations" Multiplicity="1" />
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EducationalOrganizations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Students">
-              <PropertyRef Name="EOID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Employers_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Employers" Type="Self.Employers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Employers">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Internships_Employers">
-          <End Role="Employers" Type="Self.Employers" Multiplicity="1" />
-          <End Role="Internships" Type="Self.Internships" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employers">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Internships">
@@ -520,179 +235,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_NecessarySkills_Internships">
-          <End Role="Internships" Type="Self.Internships" Multiplicity="1" />
-          <End Role="NecessarySkills" Type="Self.NecessarySkills" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Internships">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="NecessarySkills">
-              <PropertyRef Name="InternshirId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_NecessarySkills_Skills">
-          <End Role="Skills" Type="Self.Skills" Multiplicity="1" />
-          <End Role="NecessarySkills" Type="Self.NecessarySkills" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Skills">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="NecessarySkills">
-              <PropertyRef Name="SkillId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reviews_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
+        <Association Name="FK_Internships_Users1">
+          <End Type="DefaultDBModel.Users" Role="Users" Multiplicity="0..1" />
+          <End Type="DefaultDBModel.Internships" Role="Internships" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Reviews">
-              <PropertyRef Name="UserToId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Reviews_Users1">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Reviews">
-              <PropertyRef Name="UserFromId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Student_Skills_Skills">
-          <End Role="Skills" Type="Self.Skills" Multiplicity="1" />
-          <End Role="Student_Skills" Type="Self.Student_Skills" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Skills">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Student_Skills">
-              <PropertyRef Name="SkillId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Students_Specializations">
-          <End Role="Specializations" Type="Self.Specializations" Multiplicity="1" />
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Specializations">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Students">
-              <PropertyRef Name="SpecializationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Student_Skills_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Student_Skills" Type="Self.Student_Skills" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Student_Skills">
+            <Dependent Role="Internships">
               <PropertyRef Name="StudentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Students_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Students" Type="Self.Students" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Students">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="DefaultDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="EducationalOrganizations" EntityType="Self.EducationalOrganizations" />
-          <EntitySet Name="Employers" EntityType="Self.Employers" />
-          <EntitySet Name="Internships" EntityType="Self.Internships" />
-          <EntitySet Name="NecessarySkills" EntityType="Self.NecessarySkills" />
-          <EntitySet Name="Reviews" EntityType="Self.Reviews" />
-          <EntitySet Name="Skills" EntityType="Self.Skills" />
-          <EntitySet Name="Specializations" EntityType="Self.Specializations" />
-          <EntitySet Name="Student_Skills" EntityType="Self.Student_Skills" />
-          <EntitySet Name="Students" EntityType="Self.Students" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
-          <AssociationSet Name="FK_EducationalOrganizations_Users" Association="Self.FK_EducationalOrganizations_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="EducationalOrganizations" EntitySet="EducationalOrganizations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Specializations_EducationalOrganizations" Association="Self.FK_Specializations_EducationalOrganizations">
-            <End Role="EducationalOrganizations" EntitySet="EducationalOrganizations" />
-            <End Role="Specializations" EntitySet="Specializations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Students_EducationalOrganizations" Association="Self.FK_Students_EducationalOrganizations">
-            <End Role="EducationalOrganizations" EntitySet="EducationalOrganizations" />
-            <End Role="Students" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Employers_Users" Association="Self.FK_Employers_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Employers" EntitySet="Employers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Internships_Employers" Association="Self.FK_Internships_Employers">
-            <End Role="Employers" EntitySet="Employers" />
-            <End Role="Internships" EntitySet="Internships" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NecessarySkills_Internships" Association="Self.FK_NecessarySkills_Internships">
-            <End Role="Internships" EntitySet="Internships" />
-            <End Role="NecessarySkills" EntitySet="NecessarySkills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_NecessarySkills_Skills" Association="Self.FK_NecessarySkills_Skills">
-            <End Role="Skills" EntitySet="Skills" />
-            <End Role="NecessarySkills" EntitySet="NecessarySkills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reviews_Users" Association="Self.FK_Reviews_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Reviews" EntitySet="Reviews" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reviews_Users1" Association="Self.FK_Reviews_Users1">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Reviews" EntitySet="Reviews" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Student_Skills_Skills" Association="Self.FK_Student_Skills_Skills">
-            <End Role="Skills" EntitySet="Skills" />
-            <End Role="Student_Skills" EntitySet="Student_Skills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Students_Specializations" Association="Self.FK_Students_Specializations">
-            <End Role="Specializations" EntitySet="Specializations" />
-            <End Role="Students" EntitySet="Students" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Student_Skills_Users" Association="Self.FK_Student_Skills_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Student_Skills" EntitySet="Student_Skills" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Students_Users" Association="Self.FK_Students_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Students" EntitySet="Students" />
-          </AssociationSet>
-          <EntitySet Name="Roles" EntityType="DefaultDBModel.Roles" />
-          <AssociationSet Name="FK_Users_Roles" Association="DefaultDBModel.FK_Users_Roles">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="DefaultDBModel.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
-        </EntityType>
         <Association Name="FK_Users_Roles">
           <End Type="DefaultDBModel.Roles" Role="Roles" Multiplicity="1" />
           <End Type="DefaultDBModel.Users" Role="Users" Multiplicity="*" />
@@ -705,109 +259,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_Student_Skills_Skills">
+          <End Type="DefaultDBModel.Skills" Role="Skills" Multiplicity="1" />
+          <End Type="DefaultDBModel.StudentSkills" Role="StudentSkills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skills">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentSkills">
+              <PropertyRef Name="SkillId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StudentSkills_Users">
+          <End Type="DefaultDBModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="DefaultDBModel.StudentSkills" Role="StudentSkills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StudentSkills">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище DefaultDBModelContainer" CdmEntityContainer="DefaultDBEntities">
-          <EntitySetMapping Name="EducationalOrganizations">
-            <EntityTypeMapping TypeName="DefaultDBModel.EducationalOrganizations">
-              <MappingFragment StoreEntitySet="EducationalOrganizations">
+          <EntitySetMapping Name="StudentSkills">
+            <EntityTypeMapping TypeName="DefaultDBModel.StudentSkills">
+              <MappingFragment StoreEntitySet="StudentSkills">
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employers">
-            <EntityTypeMapping TypeName="DefaultDBModel.Employers">
-              <MappingFragment StoreEntitySet="Employers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Internships">
             <EntityTypeMapping TypeName="DefaultDBModel.Internships">
               <MappingFragment StoreEntitySet="Internships">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
-                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
                 <ScalarProperty Name="DateStop" ColumnName="DateStop" />
-                <ScalarProperty Name="Ckosed" ColumnName="Ckosed" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NecessarySkills">
-            <EntityTypeMapping TypeName="DefaultDBModel.NecessarySkills">
-              <MappingFragment StoreEntitySet="NecessarySkills">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
-                <ScalarProperty Name="InternshirId" ColumnName="InternshirId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reviews">
-            <EntityTypeMapping TypeName="DefaultDBModel.Reviews">
-              <MappingFragment StoreEntitySet="Reviews">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserToId" ColumnName="UserToId" />
-                <ScalarProperty Name="UserFromId" ColumnName="UserFromId" />
-                <ScalarProperty Name="Review" ColumnName="Review" />
-                <ScalarProperty Name="Grade" ColumnName="Grade" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Skills">
-            <EntityTypeMapping TypeName="DefaultDBModel.Skills">
-              <MappingFragment StoreEntitySet="Skills">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Skill" ColumnName="Skill" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Specializations">
-            <EntityTypeMapping TypeName="DefaultDBModel.Specializations">
-              <MappingFragment StoreEntitySet="Specializations">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Specialization" ColumnName="Specialization" />
-                <ScalarProperty Name="EOID" ColumnName="EOID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Student_Skills">
-            <EntityTypeMapping TypeName="DefaultDBModel.Student_Skills">
-              <MappingFragment StoreEntitySet="Student Skills">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
-                <ScalarProperty Name="Verified" ColumnName="Verified" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="DefaultDBModel.Students">
-              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="EmployerId" ColumnName="EmployerId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="SpecializationId" ColumnName="SpecializationId" />
-                <ScalarProperty Name="EOID" ColumnName="EOID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="DefaultDBModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Verified" ColumnName="Verified" />
-                <ScalarProperty Name="Grade" ColumnName="Grade" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -815,6 +313,28 @@
             <EntityTypeMapping TypeName="DefaultDBModel.Roles">
               <MappingFragment StoreEntitySet="Roles">
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="DefaultDBModel.Skills">
+              <MappingFragment StoreEntitySet="Skills">
+                <ScalarProperty Name="Skill" ColumnName="Skill" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DefaultDBModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Verified" ColumnName="Verified" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

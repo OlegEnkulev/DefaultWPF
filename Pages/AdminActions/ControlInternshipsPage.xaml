@@ -1,0 +1,31 @@
+﻿<Page x:Class="DefaultWPF.Pages.ControlInternshipsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DefaultWPF.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ControlInternshipsPage" FontFamily="{StaticResource Clear Sans}" FontSize="18">
+
+    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" >
+        <ScrollViewer Height="300" Margin="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <DataGrid BorderBrush="#3759ff" BorderThickness="2" x:Name="DG" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID студента" Width="120" Binding="{Binding StudentId}"/>
+                    <DataGridTextColumn Header="ID работодателя" Width="160" Binding="{Binding EmployerId}"/>
+                    <DataGridTextColumn Header="Дата начала стажировки" Width="230" Binding="{Binding DateStart}"/>
+                    <DataGridTextColumn Header="Дата окончания стажировки" Width="270" Binding="{Binding DateStop}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Создать стажировку" x:Name="CreateBTN" Margin="5" Width="310" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="CreateBTN_Click"/>
+            <Button Content="Редактировать стажировку" x:Name="ChangeBTN" Margin="5" Width="310" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="ChangeBTN_Click"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Удалить" x:Name="DeleteBTN" Margin="5" Width="310" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="DeleteBTN_Click"/>
+            <Button Content="Назад" x:Name="BackBTN" Margin="5" Width="310" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="BackBTN_Click"/>
+        </StackPanel>
+    </StackPanel>
+</Page>

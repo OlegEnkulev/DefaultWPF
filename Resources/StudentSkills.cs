@@ -12,15 +12,13 @@ namespace DefaultWPF.Resources
     using System;
     using System.Collections.Generic;
     
-    public partial class Students
+    public partial class StudentSkills
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
-        public int SpecializationId { get; set; }
-        public int EOID { get; set; }
+        public int StudentId { get; set; }
+        public int SkillId { get; set; }
     
-        public virtual EducationalOrganizations EducationalOrganizations { get; set; }
-        public virtual Specializations Specializations { get; set; }
+        public virtual Skills Skills { get; set; }
         public virtual Users Users { get; set; }
     }
 }
