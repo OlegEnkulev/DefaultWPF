@@ -83,5 +83,13 @@ namespace DefaultWPF.Pages
             Core.currentUser = null;
             Core.mainWindow.MainFrame.Navigate(new MainPage());
         }
+
+        private void DeleteProfileBTN_Click(object sender, RoutedEventArgs e)
+        {
+            if (MessageBox.Show("Вы действительно хотите удалить профиль?", "Warning!", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                Core.DB.Users.Remove(Core.currentUser);
+            }
+        }
     }
 }
