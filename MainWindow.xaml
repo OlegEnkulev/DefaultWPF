@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DefaultWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="470" Width="820" Background="White">
+        Height="500" Width="850" Background="White" Icon="/Resources/Images/IconBlue.png" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" Title="Сервис по организации практик и стажировок для студентов ВУЗов и ССУЗов">
     <Grid Background="#3759ff" Margin="5" x:Name="MainGrid">
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Margin="5" Background="White"/>
     </Grid>
