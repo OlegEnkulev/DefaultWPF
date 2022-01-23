@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0bf6e727533649b0b3da70f0cb0d19c3" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="DefaultDBModel.Internships" Width="1.5" PointX="5.25" PointY="3.5" />
-        <EntityTypeShape EntityType="DefaultDBModel.Reviews" Width="1.5" PointX="5.25" PointY="9.625" />
+        <EntityTypeShape EntityType="DefaultDBModel.Internships" Width="1.5" PointX="4.75" PointY="2.375" />
+        <EntityTypeShape EntityType="DefaultDBModel.Reviews" Width="1.5" PointX="7.125" PointY="5.75" />
         <EntityTypeShape EntityType="DefaultDBModel.Roles" Width="1.5" PointX="0.75" PointY="5.5" />
-        <EntityTypeShape EntityType="DefaultDBModel.Skills" Width="1.5" PointX="6" PointY="0.5" />
-        <EntityTypeShape EntityType="DefaultDBModel.StudentSkills" Width="1.5" PointX="8.25" PointY="5.25" />
+        <EntityTypeShape EntityType="DefaultDBModel.Skills" Width="1.5" PointX="6.75" PointY="3.375" />
+        <EntityTypeShape EntityType="DefaultDBModel.StudentSkills" Width="1.5" PointX="5.25" PointY="5.375" />
         <EntityTypeShape EntityType="DefaultDBModel.Users" Width="1.5" PointX="3" PointY="4.5" />
         <AssociationConnector Association="DefaultDBModel.FK_Internships_Users" />
         <AssociationConnector Association="DefaultDBModel.FK_Internships_Users1" />
@@ -18,7 +18,7 @@
         <AssociationConnector Association="DefaultDBModel.FK_Users_Roles" />
         <AssociationConnector Association="DefaultDBModel.FK_Student_Skills_Skills" />
         <AssociationConnector Association="DefaultDBModel.FK_StudentSkills_Users" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

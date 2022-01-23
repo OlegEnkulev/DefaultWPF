@@ -55,5 +55,15 @@ namespace DefaultWPF.Pages
             Core.currentUser = null;
             Core.mainWindow.MainFrame.Navigate(new MainPage());
         }
+
+        private void CreateReviewBTN_Click(object sender, RoutedEventArgs e)
+        {
+            Core.mainWindow.MainFrame.Navigate(new CreateReviewPage());
+        }
+
+        private void CheckReviewsBTN_Click(object sender, RoutedEventArgs e)
+        {
+            Core.mainWindow.MainFrame.Navigate(new CheckReviewsPage());
+        }
     }
 }

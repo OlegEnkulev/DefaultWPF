@@ -20,6 +20,8 @@ namespace DefaultWPF.Resources
             this.Internships = new HashSet<Internships>();
             this.Internships1 = new HashSet<Internships>();
             this.StudentSkills = new HashSet<StudentSkills>();
+            this.Reviews = new HashSet<Reviews>();
+            this.Reviews1 = new HashSet<Reviews>();
         }
     
         public int Id { get; set; }
@@ -38,5 +40,9 @@ namespace DefaultWPF.Resources
         public virtual Roles Roles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StudentSkills> StudentSkills { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reviews> Reviews { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reviews> Reviews1 { get; set; }
     }
 }

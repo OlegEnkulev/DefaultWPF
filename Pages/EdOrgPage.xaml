@@ -17,6 +17,8 @@
         <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image Source="/Resources/Images/EdOrg.png" Width="100" HorizontalAlignment="Center"/>
             <Label x:Name="NameLabel" Content="Unnamed" HorizontalAlignment="Center"/>
+            <Button Content="Оставить отзыв" x:Name="CreateReviewBTN" Margin="5" Width="180" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="CreateReviewBTN_Click"/>
+            <Button Content="Посмотреть отзывы" x:Name="CheckReviewsBTN" Margin="5" Width="180" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="CheckReviewsBTN_Click"/>
             <Button Content="Удалить профиль" x:Name="DeleteProfileBTN" Margin="5" Width="180" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="DeleteProfileBTN_Click"/>
         </StackPanel>
 

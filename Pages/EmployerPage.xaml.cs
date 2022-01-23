@@ -91,5 +91,15 @@ namespace DefaultWPF.Pages
                 Core.DB.Users.Remove(Core.currentUser);
             }
         }
+
+        private void CreateReviewBTN_Click(object sender, RoutedEventArgs e)
+        {
+            Core.mainWindow.MainFrame.Navigate(new CreateReviewPage());
+        }
+
+        private void CheckReviewsBTN_Click(object sender, RoutedEventArgs e)
+        {
+            Core.mainWindow.MainFrame.Navigate(new CheckReviewsPage());
+        }
     }
 }

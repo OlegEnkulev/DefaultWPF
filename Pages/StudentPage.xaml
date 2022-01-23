@@ -18,6 +18,8 @@
             <Image Source="/Resources/Images/Student.png" Width="100" HorizontalAlignment="Center"/>
             <Label x:Name="NameLabel" Content="Unnamed" HorizontalAlignment="Center"/>
             <Label x:Name="GradeLabel" Content="Ваша оценка: 0" HorizontalAlignment="Center"/>
+            <Button Content="Оставить отзыв" x:Name="CreateReviewBTN" Margin="5" Width="180" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="CreateReviewBTN_Click"/>
+            <Button Content="Посмотреть отзывы" x:Name="CheckReviewsBTN" Margin="5" Width="180" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="CheckReviewsBTN_Click"/>
             <Button Content="Удалить профиль" x:Name="DeleteProfileBTN" Margin="5" Width="180" BorderBrush="#3759ff" BorderThickness="2" Background="Transparent" Click="DeleteProfileBTN_Click"/>
         </StackPanel>
 

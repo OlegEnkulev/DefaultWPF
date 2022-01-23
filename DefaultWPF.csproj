@@ -73,6 +73,12 @@
     <Compile Include="Pages\AdminActions\ActionWithUserPage.xaml.cs">
       <DependentUpon>ActionWithUserPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CheckReviewsPage.xaml.cs">
+      <DependentUpon>CheckReviewsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CreateReviewPage.xaml.cs">
+      <DependentUpon>CreateReviewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AdminPage.xaml.cs">
       <DependentUpon>AdminPage.xaml</DependentUpon>
     </Compile>
@@ -116,6 +122,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Reviews.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Roles.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -149,6 +158,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\AdminActions\ActionWithUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CheckReviewsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CreateReviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -30,5 +30,6 @@ namespace DefaultWPF.Resources
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Skills> Skills { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Reviews> Reviews { get; set; }
     }
 }
